@@ -1777,6 +1777,9 @@ export default function EarthClient() {
     }, []);
 
     const sceneKey = `${viewportSize.width}x${viewportSize.height}-${isPhone}-${isTablet}`;
+    const isLandscape = viewportSize.width > viewportSize.height;
+    const isDesktopLayout = viewportSize.width >= 1280;
+    const showDesktopSatellite = isDesktopLayout && !isPhone && !isTablet;
 
     return (
         <main className="relative min-h-screen overflow-hidden bg-[#02040a] text-white">
@@ -1803,7 +1806,7 @@ export default function EarthClient() {
             <SpaceDecor shootingStars={shootingStars} ufo={ufo} />
 
             <section
-                className={`relative z-10 min-h-screen px-4 py-4 md:px-8 transition-opacity duration-700 ${
+                className={`relative z-10 min-h-screen px-4 py-4 pb-16 md:px-8 md:pb-24 transition-opacity duration-700 ${
                     pageVisible ? "opacity-100" : "opacity-0"
                 }`}
             >
@@ -2164,15 +2167,15 @@ export default function EarthClient() {
                             />
 
                             <div
-                                className={`absolute inset-x-0 flex justify-center ${
+                                className={`absolute inset-x-0 z-20 flex justify-center ${
                                     isPhone
-                                        ? "-bottom-12"
+                                        ? "-bottom-6"
                                         : isTablet
-                                            ? "-bottom-12"
-                                            : "-bottom-14 xl:-bottom-16"
+                                            ? (isLandscape ? "-bottom-4" : "-bottom-8")
+                                            : "-bottom-10 xl:-bottom-12"
                                 }`}
                             >
-                                {!isPhone && !isTablet ? (
+                                {showDesktopSatellite ? (
                                     <div className="w-full max-w-[420px]">
                                         <OrbitalSatelliteMini
                                             activeLayer={activeLayer}
@@ -2182,7 +2185,15 @@ export default function EarthClient() {
                                         />
                                     </div>
                                 ) : (
-                                    <div className={`w-full ${isPhone ? "max-w-[280px]" : "max-w-[320px]"}`}>
+                                    <div
+                                        className={`w-full ${
+                                            isPhone
+                                                ? "max-w-[280px]"
+                                                : isTablet
+                                                    ? (isLandscape ? "max-w-[340px]" : "max-w-[320px]")
+                                                    : "max-w-[320px]"
+                                        }`}
+                                    >
                                         <OrbitalMobileFeed
                                             activeLayer={activeLayer}
                                             liveValues={satelliteLiveValues}
