@@ -1905,7 +1905,7 @@ export default function EarthClient() {
                             </div>
 
                             {hasEarthInsights ? (
-                                <section className="mt-4">
+                                <section className="mt-5">
                                     <div
                                         className="mb-4"
                                         style={{ transform: "translateX(10px)" }}
@@ -1921,9 +1921,9 @@ export default function EarthClient() {
                                         </p>
                                     </div>
 
-                                    <div className="grid gap-4 md:grid-cols-3">
+                                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
                                         <div
-                                            className="rounded-[28px] border bg-black/25 p-6 backdrop-blur-2xl"
+                                            className="relative overflow-hidden rounded-[28px] border bg-black/25 p-5 backdrop-blur-2xl"
                                             style={{
                                                 borderColor: worldMood.border,
                                                 boxShadow: worldMood.glow,
@@ -1932,19 +1932,37 @@ export default function EarthClient() {
                                                     : "none",
                                             }}
                                         >
-                                            <div className="text-xs uppercase tracking-[0.22em] text-white/42">
-                                                {worldMood.label}
+                                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
+                                            <div className="relative flex min-h-[180px] flex-col justify-between">
+                                                <div>
+                                                    <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
+                                                        {worldMood.label}
+                                                    </div>
+                                                    <p className="mt-3 max-w-[34ch] text-sm leading-6 text-white/58">
+                                                        {worldMood.description}
+                                                    </p>
+                                                </div>
+
+                                                <div className="mt-6 flex items-end justify-between gap-3">
+                                                    <div className="min-w-0">
+                                                        <div className="break-words text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                            {worldMood.value}
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                                                        style={{
+                                                            background: worldMood.border,
+                                                            boxShadow: `0 0 16px ${worldMood.border}`,
+                                                        }}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="mt-4 text-3xl font-semibold text-white">
-                                                {worldMood.value}
-                                            </div>
-                                            <p className="mt-3 text-sm leading-6 text-white/58">
-                                                {worldMood.description}
-                                            </p>
                                         </div>
 
                                         <div
-                                            className="rounded-[28px] border bg-black/25 p-6 backdrop-blur-2xl"
+                                            className="relative overflow-hidden rounded-[28px] border bg-black/25 p-5 backdrop-blur-2xl"
                                             style={{
                                                 borderColor: activePressure.border,
                                                 boxShadow: activePressure.glow,
@@ -1953,19 +1971,37 @@ export default function EarthClient() {
                                                     : "none",
                                             }}
                                         >
-                                            <div className="text-xs uppercase tracking-[0.22em] text-white/42">
-                                                {activePressure.label}
+                                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
+                                            <div className="relative flex min-h-[180px] flex-col justify-between">
+                                                <div>
+                                                    <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
+                                                        {activePressure.label}
+                                                    </div>
+                                                    <p className="mt-3 max-w-[34ch] text-sm leading-6 text-white/58">
+                                                        {activePressure.description}
+                                                    </p>
+                                                </div>
+
+                                                <div className="mt-6 flex items-end justify-between gap-3">
+                                                    <div className="min-w-0">
+                                                        <div className="break-words text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                            {activePressure.value}
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                                                        style={{
+                                                            background: activePressure.border,
+                                                            boxShadow: `0 0 16px ${activePressure.border}`,
+                                                        }}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="mt-4 text-3xl font-semibold text-white">
-                                                {activePressure.value}
-                                            </div>
-                                            <p className="mt-3 text-sm leading-6 text-white/58">
-                                                {activePressure.description}
-                                            </p>
                                         </div>
 
                                         <div
-                                            className="rounded-[28px] border bg-black/25 p-6 backdrop-blur-2xl"
+                                            className="relative overflow-hidden rounded-[28px] border bg-black/25 p-5 backdrop-blur-2xl"
                                             style={{
                                                 borderColor: dominantSignal.border,
                                                 boxShadow: dominantSignal.glow,
@@ -1974,15 +2010,33 @@ export default function EarthClient() {
                                                     : "none",
                                             }}
                                         >
-                                            <div className="text-xs uppercase tracking-[0.22em] text-white/42">
-                                                {dominantSignal.label}
+                                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
+                                            <div className="relative flex min-h-[180px] flex-col justify-between">
+                                                <div>
+                                                    <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
+                                                        {dominantSignal.label}
+                                                    </div>
+                                                    <p className="mt-3 max-w-[34ch] text-sm leading-6 text-white/58">
+                                                        {dominantSignal.description}
+                                                    </p>
+                                                </div>
+
+                                                <div className="mt-6 flex items-end justify-between gap-3">
+                                                    <div className="min-w-0">
+                                                        <div className="break-words text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                            {dominantSignal.value}
+                                                        </div>
+                                                    </div>
+
+                                                    <div
+                                                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                                                        style={{
+                                                            background: dominantSignal.border,
+                                                            boxShadow: `0 0 16px ${dominantSignal.border}`,
+                                                        }}
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className="mt-4 text-3xl font-semibold text-white">
-                                                {dominantSignal.value}
-                                            </div>
-                                            <p className="mt-3 text-sm leading-6 text-white/58">
-                                                {dominantSignal.description}
-                                            </p>
                                         </div>
                                     </div>
                                 </section>
@@ -2144,16 +2198,16 @@ export default function EarthClient() {
                                 </p>
 
                                 <div className="mt-4 flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.18em] text-white/38">
-                                    <span>
-                                        {isPolled
-                                            ? copy.common.feedSync
-                                            : isSlow
-                                                ? copy.common.slowLiveRate
-                                                : copy.common.continuousLive}
-                                    </span>
+                        <span>
+                            {isPolled
+                                ? copy.common.feedSync
+                                : isSlow
+                                    ? copy.common.slowLiveRate
+                                    : copy.common.continuousLive}
+                        </span>
 
                                     <span className="inline-flex items-center gap-1">
-                                        <Sparkles className="h-3.5 w-3.5" />
+                            <Sparkles className="h-3.5 w-3.5" />
                                         {isPolled
                                             ? formatLastUpdateTime(
                                                 lastPolledUpdate,
@@ -2161,7 +2215,7 @@ export default function EarthClient() {
                                                 copy.common.syncing
                                             )
                                             : copy.common.active}
-                                    </span>
+                        </span>
                                 </div>
 
                                 <div className="relative mt-4 h-[2px] overflow-hidden rounded-full bg-white/8">
@@ -2230,6 +2284,7 @@ export default function EarthClient() {
                     </div>
                 </div>
             </section>
+
             <section className="relative z-10 mx-auto max-w-7xl px-4 pb-24 md:px-8">
                 <div className="mx-auto max-w-5xl text-center">
                     <div className="text-[10px] uppercase tracking-[0.28em] text-white/38">
