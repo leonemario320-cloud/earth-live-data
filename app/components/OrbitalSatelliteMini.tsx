@@ -492,7 +492,7 @@ export default function OrbitalSatelliteMini({
                 .satellite-anchor {
                     position: absolute;
                     left: 50%;
-                    top: 100%;
+                    top: 190%;
                     transform: translate(-50%, -16px);
                     
                 }
