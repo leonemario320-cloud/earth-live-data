@@ -1241,6 +1241,31 @@ export default function EarthClient() {
         };
     });
 
+    useEffect(() => {
+        const refreshAccessFromStorage = () => {
+            const saved = window.localStorage.getItem("earth-access");
+            if (!saved) return;
+
+            try {
+                const parsed = JSON.parse(saved);
+                setUserAccess({
+                    supporter: Boolean(parsed?.supporter),
+                    pro: Boolean(parsed?.pro),
+                    earthInsights: Boolean(parsed?.earthInsights),
+                    donator: Boolean(parsed?.donator),
+                    donationAmount: Number(parsed?.donationAmount ?? 0),
+                });
+            } catch {}
+        };
+
+        refreshAccessFromStorage();
+        window.addEventListener("focus", refreshAccessFromStorage);
+
+        return () => {
+            window.removeEventListener("focus", refreshAccessFromStorage);
+        };
+    }, []);
+
     const isDonator = userAccess.donator || userAccess.donationAmount > 0;
     const hasEarthInsights = userAccess.earthInsights;
 

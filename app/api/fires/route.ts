@@ -4,10 +4,14 @@ export async function GET() {
     const mapKey = process.env.FIRMS_MAP_KEY;
 
     if (!mapKey) {
-        return NextResponse.json(
-            { count: -1, error: "Missing FIRMS_MAP_KEY" },
-            { status: 500 }
-        );
+        return NextResponse.json({
+            count: 0,
+            source: "VIIRS_SNPP_NRT",
+            area: "world",
+            updatedAt: Date.now(),
+            fallback: true,
+            error: "Missing FIRMS_MAP_KEY",
+        });
     }
 
     try {
@@ -22,10 +26,14 @@ export async function GET() {
         });
 
         if (!res.ok) {
-            return NextResponse.json(
-                { count: -1, error: `FIRMS request failed: ${res.status}` },
-                { status: 500 }
-            );
+            return NextResponse.json({
+                count: 0,
+                source,
+                area,
+                updatedAt: Date.now(),
+                fallback: true,
+                error: `FIRMS request failed: ${res.status}`,
+            });
         }
 
         const csvText = await res.text();
@@ -42,11 +50,16 @@ export async function GET() {
             source,
             area,
             updatedAt: Date.now(),
+            fallback: false,
         });
     } catch (error) {
-        return NextResponse.json(
-            { count: -1, error: "Failed to fetch FIRMS data" },
-            { status: 500 }
-        );
+        return NextResponse.json({
+            count: 0,
+            source: "VIIRS_SNPP_NRT",
+            area: "world",
+            updatedAt: Date.now(),
+            fallback: true,
+            error: "Failed to fetch FIRMS data",
+        });
     }
 }
