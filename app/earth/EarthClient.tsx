@@ -1742,6 +1742,42 @@ export default function EarthClient() {
         return () => window.clearInterval(interval);
     }, []);
 
+    const [viewportSize, setViewportSize] = useState({
+        width: 0,
+        height: 0,
+    });
+
+    useEffect(() => {
+        const updateViewport = () => {
+            setViewportSize({
+                width: window.innerWidth,
+                height: window.innerHeight,
+            });
+        };
+
+        updateViewport();
+
+        let timeout: ReturnType<typeof setTimeout> | null = null;
+
+        const handleResize = () => {
+            if (timeout) clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                updateViewport();
+            }, 120);
+        };
+
+        window.addEventListener("resize", handleResize);
+        window.addEventListener("orientationchange", handleResize);
+
+        return () => {
+            if (timeout) clearTimeout(timeout);
+            window.removeEventListener("resize", handleResize);
+            window.removeEventListener("orientationchange", handleResize);
+        };
+    }, []);
+
+    const sceneKey = `${viewportSize.width}x${viewportSize.height}-${isPhone}-${isTablet}`;
+
     return (
         <main className="relative min-h-screen overflow-hidden bg-[#02040a] text-white">
             <CenterToastModal
@@ -2091,10 +2127,10 @@ export default function EarthClient() {
                         <div
                             className={`relative w-full overflow-visible ${
                                 isPhone
-                                    ? "h-[30vh] min-h-[230px] rounded-[24px]"
+                                    ? "h-[30svh] min-h-[230px] rounded-[24px]"
                                     : isTablet
-                                        ? "h-[44vh] min-h-[340px] rounded-[32px]"
-                                        : "h-[66vh] min-h-[520px] rounded-[40px] md:h-[82vh] xl:h-[92vh]"
+                                        ? "h-[44svh] min-h-[340px] rounded-[32px]"
+                                        : "h-[66svh] min-h-[520px] rounded-[40px] md:h-[82svh] xl:h-[92svh]"
                             }`}
                         >
                             <div className="absolute inset-0 bg-[#02040a]" />
@@ -2120,6 +2156,7 @@ export default function EarthClient() {
                             )}
 
                             <EarthScene
+                                key={sceneKey}
                                 activeLayer={activeLayer}
                                 isNight={isNight}
                                 isLowPerf={isLowPerf || isPhone}
