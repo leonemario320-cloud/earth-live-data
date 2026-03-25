@@ -3,7 +3,10 @@ import Stripe from "stripe";
 
 export async function GET(req: NextRequest) {
     try {
-        const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+        const rawStripeSecretKey = process.env.STRIPE_SECRET_KEY ?? "";
+        const stripeSecretKey = rawStripeSecretKey
+            .replace(/^['"]|['"]$/g, "")
+            .trim();
 
         if (!stripeSecretKey) {
             return NextResponse.json(
