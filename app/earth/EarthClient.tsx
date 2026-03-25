@@ -2089,7 +2089,7 @@ export default function EarthClient() {
 
                     <div className="order-2 xl:order-2">
                         <div
-                            className={`relative w-full overflow-hidden ${
+                            className={`relative w-full overflow-visible ${
                                 isPhone
                                     ? "h-[30vh] min-h-[230px] rounded-[24px]"
                                     : isTablet
@@ -2129,10 +2129,10 @@ export default function EarthClient() {
                             <div
                                 className={`absolute inset-x-0 flex justify-center ${
                                     isPhone
-                                        ? "bottom-3"
+                                        ? "-bottom-10"
                                         : isTablet
-                                            ? "bottom-4"
-                                            : "bottom-8 xl:bottom-10"
+                                            ? "-bottom-12"
+                                            : "-bottom-14 xl:-bottom-16"
                                 }`}
                             >
                                 {!isPhone && !isTablet ? (
