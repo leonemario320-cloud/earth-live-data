@@ -9,7 +9,7 @@ const geistSans = Geist({
 
 export const metadata = {
     title: "Earth Live Data",
-    description: "Watch the world happening now.",
+    description: "Watch The Global Statistic",
     icons: {
         icon: "/favicon.png",
         shortcut: "/favicon.png",
