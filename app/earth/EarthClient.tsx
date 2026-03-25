@@ -1,6 +1,6 @@
 "use client";
 
-import UniversalSceneStage from "../components/UniversalSceneStage";
+import { useDeviceTier } from "../hooks/useDeviceTier";
 import OrbitalSatelliteMini from "../components/OrbitalSatelliteMini";
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -1143,6 +1143,7 @@ const DONATION_LINKS: Record<number, string> = {
 };
 
 export default function EarthClient() {
+    const { isPhone, isTablet, isDesktop } = useDeviceTier();
     const [lang, setLang] = useState<AppLanguage>("en");
     const copy = earthCopy[lang];
     const locale = lang === "it" ? "it-IT" : "en-US";
@@ -1769,10 +1770,10 @@ export default function EarthClient() {
                     pageVisible ? "opacity-100" : "opacity-0"
                 }`}
             >
-                <div className="mx-auto grid min-h-[88vh] max-w-[1800px] items-center gap-6 xl:grid-cols-[0.42fr_1.58fr]">
-                    <div className="order-2 xl:order-1">
+                <div className="mx-auto grid min-h-[88vh] max-w-[1800px] items-start gap-8 xl:items-center xl:gap-6 xl:grid-cols-[0.42fr_1.58fr]">
+                    <div className="order-1 xl:order-1">
                         <div className="max-w-xl">
-                            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.22em] text-white/55 backdrop-blur-xl">
+                            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] uppercase tracking-[0.22em] text-white/55 backdrop-blur-xl sm:text-xs">
                                 <Globe2 className="h-3.5 w-3.5" />
                                 {copy.hero.badge}
                             </div>
@@ -1803,27 +1804,27 @@ export default function EarthClient() {
 
                             <div className="mt-4 flex flex-wrap gap-2">
                                 {!planetGuardianLabel && !hasEarthInsights && (
-                                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-xs uppercase tracking-[0.18em] text-white/60">
+                                    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-white/60 sm:text-xs">
                                         {copy.common.access}:
                                         <span className="text-white">{copy.common.freeForEveryone}</span>
                                     </div>
                                 )}
 
                                 {hasEarthInsights && (
-                                    <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-sky-100">
+                                    <div className="inline-flex items-center gap-2 rounded-full border border-sky-400/20 bg-sky-400/10 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-sky-100 sm:text-xs">
                                         {copy.access.earthInsights}
                                     </div>
                                 )}
 
                                 {planetGuardianLabel && (
-                                    <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-2 text-xs uppercase tracking-[0.18em] text-yellow-100">
+                                    <div className="inline-flex items-center gap-2 rounded-full border border-yellow-400/20 bg-yellow-400/10 px-3 py-2 text-[11px] uppercase tracking-[0.18em] text-yellow-100 sm:text-xs">
                                         {planetGuardianLabel}
                                     </div>
                                 )}
                             </div>
 
                             <h1
-                                className="mt-6 text-5xl font-semibold leading-[0.92] tracking-tight md:text-7xl"
+                                className="mt-6 text-4xl font-semibold leading-[0.92] tracking-tight sm:text-5xl md:text-6xl xl:text-7xl"
                                 style={{ transform: "translateX(10px)" }}
                             >
                                 {lang === "it" ? (
@@ -1849,7 +1850,7 @@ export default function EarthClient() {
                             </p>
 
                             <div
-                                className="mt-7 rounded-[28px] border border-white/10 bg-black/25 p-6 backdrop-blur-2xl"
+                                className="mt-7 rounded-[24px] border border-white/10 bg-black/25 p-5 backdrop-blur-2xl sm:rounded-[28px] sm:p-6"
                                 style={{
                                     boxShadow: unlocks.donator.glow
                                         ? `0 0 140px rgba(250,204,21,0.18), 0 0 40px ${current.glow}28`
@@ -1859,7 +1860,7 @@ export default function EarthClient() {
                                 }}
                             >
                                 <div className="flex items-center justify-between gap-3">
-                                    <div className="text-xs uppercase tracking-[0.24em] text-white/42">
+                                    <div className="text-[11px] uppercase tracking-[0.24em] text-white/42 sm:text-xs">
                                         {copy.common.liveNow}
                                     </div>
                                     <LiveChip
@@ -1876,11 +1877,11 @@ export default function EarthClient() {
                                     />
                                 </div>
 
-                                <div className="mt-3 break-words text-5xl font-semibold tracking-tight md:text-6xl">
+                                <div className="mt-3 break-words text-4xl font-semibold tracking-tight sm:text-5xl md:text-6xl">
                                     {current.value}
                                 </div>
 
-                                <div className="mt-2 text-lg font-medium text-white">
+                                <div className="mt-2 text-base font-medium text-white sm:text-lg">
                                     {current.label}
                                 </div>
 
@@ -1911,10 +1912,10 @@ export default function EarthClient() {
                                         className="mb-4"
                                         style={{ transform: "translateX(10px)" }}
                                     >
-                                        <div className="text-xs uppercase tracking-[0.24em] text-white/42">
+                                        <div className="text-[11px] uppercase tracking-[0.24em] text-white/42 sm:text-xs">
                                             {copy.access.earthInsights}
                                         </div>
-                                        <h2 className="mt-3 max-w-[16ch] text-3xl font-semibold leading-tight text-white">
+                                        <h2 className="mt-3 max-w-[16ch] text-2xl font-semibold leading-tight text-white sm:text-3xl">
                                             {copy.insights.cardsTitle}
                                         </h2>
                                         <p className="mt-3 max-w-[560px] text-sm leading-6 text-white/58">
@@ -1924,7 +1925,7 @@ export default function EarthClient() {
 
                                     <div className="flex flex-col gap-4">
                                         <div
-                                            className="relative overflow-hidden rounded-[28px] border bg-black/25 p-5 backdrop-blur-2xl"
+                                            className="relative overflow-hidden rounded-[24px] border bg-black/25 p-4 backdrop-blur-2xl sm:rounded-[28px] sm:p-5"
                                             style={{
                                                 borderColor: worldMood.border,
                                                 boxShadow: worldMood.glow,
@@ -1934,7 +1935,7 @@ export default function EarthClient() {
                                             }}
                                         >
                                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
-                                            <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                                            <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                                 <div className="min-w-0 flex-1">
                                                     <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
                                                         {worldMood.label}
@@ -1953,7 +1954,7 @@ export default function EarthClient() {
                                                         }}
                                                     />
                                                     <div className="text-left md:text-right">
-                                                        <div className="text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                        <div className="text-xl font-semibold leading-tight text-white sm:text-2xl md:text-[30px]">
                                                             {worldMood.value}
                                                         </div>
                                                     </div>
@@ -1962,7 +1963,7 @@ export default function EarthClient() {
                                         </div>
 
                                         <div
-                                            className="relative overflow-hidden rounded-[28px] border bg-black/25 p-5 backdrop-blur-2xl"
+                                            className="relative overflow-hidden rounded-[24px] border bg-black/25 p-4 backdrop-blur-2xl sm:rounded-[28px] sm:p-5"
                                             style={{
                                                 borderColor: activePressure.border,
                                                 boxShadow: activePressure.glow,
@@ -1972,7 +1973,7 @@ export default function EarthClient() {
                                             }}
                                         >
                                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
-                                            <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                                            <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                                 <div className="min-w-0 flex-1">
                                                     <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
                                                         {activePressure.label}
@@ -1991,7 +1992,7 @@ export default function EarthClient() {
                                                         }}
                                                     />
                                                     <div className="text-left md:text-right">
-                                                        <div className="text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                        <div className="text-xl font-semibold leading-tight text-white sm:text-2xl md:text-[30px]">
                                                             {activePressure.value}
                                                         </div>
                                                     </div>
@@ -2000,7 +2001,7 @@ export default function EarthClient() {
                                         </div>
 
                                         <div
-                                            className="relative overflow-hidden rounded-[28px] border bg-black/25 p-5 backdrop-blur-2xl"
+                                            className="relative overflow-hidden rounded-[24px] border bg-black/25 p-4 backdrop-blur-2xl sm:rounded-[28px] sm:p-5"
                                             style={{
                                                 borderColor: dominantSignal.border,
                                                 boxShadow: dominantSignal.glow,
@@ -2010,7 +2011,7 @@ export default function EarthClient() {
                                             }}
                                         >
                                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
-                                            <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                                            <div className="relative flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                                                 <div className="min-w-0 flex-1">
                                                     <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
                                                         {dominantSignal.label}
@@ -2029,7 +2030,7 @@ export default function EarthClient() {
                                                         }}
                                                     />
                                                     <div className="text-left md:text-right">
-                                                        <div className="text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                        <div className="text-xl font-semibold leading-tight text-white sm:text-2xl md:text-[30px]">
                                                             {dominantSignal.value}
                                                         </div>
                                                     </div>
@@ -2040,11 +2041,11 @@ export default function EarthClient() {
                                 </section>
                             ) : (
                                 <div className="mt-4">
-                                    <GlassCard className="p-6">
-                                        <div className="text-xs uppercase tracking-[0.24em] text-white/42">
+                                    <GlassCard className="p-5 sm:p-6">
+                                        <div className="text-[11px] uppercase tracking-[0.24em] text-white/42 sm:text-xs">
                                             {copy.access.earthInsights}
                                         </div>
-                                        <h3 className="mt-3 text-2xl font-semibold text-white">
+                                        <h3 className="mt-3 text-xl font-semibold text-white sm:text-2xl">
                                             {copy.insights.unlock}
                                         </h3>
                                         <p className="mt-3 text-sm leading-6 text-white/58">
@@ -2084,52 +2085,73 @@ export default function EarthClient() {
                             </div>
                         </div>
                     </div>
-                    <div className="order-1 xl:order-2">
-                        <UniversalSceneStage className="h-[42vh] min-h-[320px] w-full rounded-[40px] sm:h-[50vh] md:h-[66vh] xl:h-[92vh]">
-                            {(stage) => (
-                                <div className="relative h-full w-full overflow-hidden rounded-[40px]">
-                                    <div className="absolute inset-0 rounded-[40px] bg-[#02040a]" />
-                                    <div className="absolute inset-0 rounded-full bg-cyan-400/5 blur-3xl" />
-                                    <div className="absolute inset-[-10%] rounded-full bg-violet-500/5 blur-[120px]" />
 
-                                    {unlocks.donator.particles && (
-                                        <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                                            {Array.from({ length: 18 }).map((_, i) => (
-                                                <div
-                                                    key={i}
-                                                    className="absolute h-1.5 w-1.5 rounded-full bg-yellow-300"
-                                                    style={{
-                                                        left: `${(i * 17) % 100}%`,
-                                                        top: `${(i * 11) % 100}%`,
-                                                        opacity: 0.6,
-                                                        boxShadow: "0 0 12px rgba(250,204,21,0.7)",
-                                                        animation: `livePulse ${2 + (i % 4)}s ease-in-out infinite`,
-                                                    }}
-                                                />
-                                            ))}
-                                        </div>
-                                    )}
+                    <div className="order-2 xl:order-2">
+                        <div
+                            className={`relative w-full overflow-hidden ${
+                                isPhone
+                                    ? "h-[30vh] min-h-[230px] rounded-[24px]"
+                                    : isTablet
+                                        ? "h-[44vh] min-h-[340px] rounded-[32px]"
+                                        : "h-[66vh] min-h-[520px] rounded-[40px] md:h-[82vh] xl:h-[92vh]"
+                            }`}
+                        >
+                            <div className="absolute inset-0 bg-[#02040a]" />
+                            <div className="absolute inset-0 rounded-full bg-cyan-400/5 blur-3xl" />
+                            <div className="absolute inset-[-10%] rounded-full bg-violet-500/5 blur-[120px]" />
 
-                                    <div className="absolute inset-0">
-                                        <EarthScene
-                                            activeLayer={activeLayer}
-                                            isNight={isNight}
-                                            isLowPerf={isLowPerf || stage.isLowPerf}
-                                            hasPlanetGuardian={unlocks.donator.aura}
+                            {unlocks.donator.particles && !isPhone && (
+                                <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                                    {Array.from({ length: isTablet ? 10 : 18 }).map((_, i) => (
+                                        <div
+                                            key={i}
+                                            className="absolute h-1.5 w-1.5 rounded-full bg-yellow-300"
+                                            style={{
+                                                left: `${(i * 17) % 100}%`,
+                                                top: `${(i * 11) % 100}%`,
+                                                opacity: 0.6,
+                                                boxShadow: "0 0 12px rgba(250,204,21,0.7)",
+                                                animation: `livePulse ${2 + (i % 4)}s ease-in-out infinite`,
+                                            }}
                                         />
-                                    </div>
-
-                                    <div className="absolute left-1/2 bottom-[92px] w-[420px] -translate-x-1/2">
-                                        <OrbitalSatelliteMini
-                                            activeLayer={activeLayer}
-                                            liveValues={satelliteLiveValues}
-                                            liveStats={satelliteLiveStats}
-                                            previousLiveData={satellitePreviousStats}
-                                        />
-                                    </div>
+                                    ))}
                                 </div>
                             )}
-                        </UniversalSceneStage>
+
+                            <EarthScene
+                                activeLayer={activeLayer}
+                                isNight={isNight}
+                                isLowPerf={isLowPerf || isPhone}
+                                hasPlanetGuardian={unlocks.donator.aura}
+                            />
+
+                            <div
+                                className={`absolute inset-x-0 flex justify-center ${
+                                    isPhone
+                                        ? "bottom-0"
+                                        : isTablet
+                                            ? "bottom-2"
+                                            : "bottom-8 xl:bottom-10"
+                                }`}
+                            >
+                                <div
+                                    className={`w-full ${
+                                        isPhone
+                                            ? "max-w-[165px]"
+                                            : isTablet
+                                                ? "max-w-[250px]"
+                                                : "max-w-[420px]"
+                                    }`}
+                                >
+                                    <OrbitalSatelliteMini
+                                        activeLayer={activeLayer}
+                                        liveValues={satelliteLiveValues}
+                                        liveStats={satelliteLiveStats}
+                                        previousLiveData={satellitePreviousStats}
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -2149,7 +2171,7 @@ export default function EarthClient() {
                             <button
                                 key={layer.id}
                                 onClick={() => setActiveLayer(layer.id)}
-                                className="group relative overflow-hidden rounded-[24px] border p-5 text-left backdrop-blur-2xl transition duration-300"
+                                className="group relative overflow-hidden rounded-[22px] border p-4 text-left backdrop-blur-2xl transition duration-300 sm:rounded-[24px] sm:p-5"
                                 style={{
                                     borderColor: selected
                                         ? `${layer.glow}55`
@@ -2180,7 +2202,7 @@ export default function EarthClient() {
                                             />
                                         </div>
 
-                                        <div className="mt-1 text-xl font-semibold text-white">
+                                        <div className="mt-1 text-lg font-semibold text-white sm:text-xl">
                                             {layer.label}
                                         </div>
                                     </div>
@@ -2190,7 +2212,7 @@ export default function EarthClient() {
                                     </div>
                                 </div>
 
-                                <div className="mt-5 break-words text-3xl font-semibold tracking-tight text-white">
+                                <div className="mt-5 break-words text-2xl font-semibold tracking-tight text-white sm:text-3xl">
                                     {layer.value}
                                 </div>
 
@@ -2198,17 +2220,17 @@ export default function EarthClient() {
                                     {layer.subtitle}
                                 </p>
 
-                                <div className="mt-4 flex items-center justify-between gap-3 text-[11px] uppercase tracking-[0.18em] text-white/38">
-                        <span>
-                            {isPolled
-                                ? copy.common.feedSync
-                                : isSlow
-                                    ? copy.common.slowLiveRate
-                                    : copy.common.continuousLive}
-                        </span>
+                                <div className="mt-4 flex items-center justify-between gap-3 text-[10px] uppercase tracking-[0.18em] text-white/38 sm:text-[11px]">
+                                <span>
+                                    {isPolled
+                                        ? copy.common.feedSync
+                                        : isSlow
+                                            ? copy.common.slowLiveRate
+                                            : copy.common.continuousLive}
+                                </span>
 
                                     <span className="inline-flex items-center gap-1">
-                            <Sparkles className="h-3.5 w-3.5" />
+                                    <Sparkles className="h-3.5 w-3.5" />
                                         {isPolled
                                             ? formatLastUpdateTime(
                                                 lastPolledUpdate,
@@ -2216,7 +2238,7 @@ export default function EarthClient() {
                                                 copy.common.syncing
                                             )
                                             : copy.common.active}
-                        </span>
+                                </span>
                                 </div>
 
                                 <div className="relative mt-4 h-[2px] overflow-hidden rounded-full bg-white/8">
@@ -2252,11 +2274,11 @@ export default function EarthClient() {
                         onClick={() => setActiveModal("insights")}
                         className="w-full text-left"
                     >
-                        <GlassCard className="p-6 transition duration-300 hover:-translate-y-1 hover:border-sky-400/20 hover:bg-sky-400/[0.03]">
-                            <div className="text-xs uppercase tracking-[0.24em] text-white/42">
+                        <GlassCard className="p-5 transition duration-300 hover:-translate-y-1 hover:border-sky-400/20 hover:bg-sky-400/[0.03] sm:p-6">
+                            <div className="text-[11px] uppercase tracking-[0.24em] text-white/42 sm:text-xs">
                                 {copy.access.earthInsights}
                             </div>
-                            <h3 className="mt-3 text-2xl font-semibold">
+                            <h3 className="mt-3 text-xl font-semibold sm:text-2xl">
                                 {copy.insights.title}
                             </h3>
                             <p className="mt-3 text-sm leading-6 text-white/58">
@@ -2270,11 +2292,11 @@ export default function EarthClient() {
                             onClick={() => setActiveModal("donation")}
                             className="w-full text-left"
                         >
-                            <GlassCard className="p-6 transition duration-300 hover:-translate-y-1 hover:border-yellow-400/20 hover:bg-yellow-400/[0.03]">
-                                <div className="text-xs uppercase tracking-[0.24em] text-white/42">
+                            <GlassCard className="p-5 transition duration-300 hover:-translate-y-1 hover:border-yellow-400/20 hover:bg-yellow-400/[0.03] sm:p-6">
+                                <div className="text-[11px] uppercase tracking-[0.24em] text-white/42 sm:text-xs">
                                     {copy.donation.eyebrow}
                                 </div>
-                                <h3 className="mt-3 text-2xl font-semibold">
+                                <h3 className="mt-3 text-xl font-semibold sm:text-2xl">
                                     {copy.donation.title}
                                 </h3>
                                 <p className="mt-3 text-sm leading-6 text-white/58">
@@ -2300,28 +2322,22 @@ export default function EarthClient() {
                         {copy.finalSection.description}
                     </p>
 
-                    <div
-                        className="flex justify-center"
-                        style={{ marginTop: "18px", marginLeft: "-10px" }}
-                    >
-                        <div className="inline-flex flex-wrap items-center gap-2">
-                <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/62">
-                    {copy.finalSection.chips[0]}
-                </span>
+                    <div className="mt-[18px] flex justify-center">
+                        <div className="inline-flex flex-wrap items-center justify-center gap-2">
+                        <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/62">
+                            {copy.finalSection.chips[0]}
+                        </span>
                             <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/62">
-                    {copy.finalSection.chips[1]}
-                </span>
+                            {copy.finalSection.chips[1]}
+                        </span>
                             <span className="rounded-full border border-white/10 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white/62">
-                    {copy.finalSection.chips[2]}
-                </span>
+                            {copy.finalSection.chips[2]}
+                        </span>
                         </div>
                     </div>
                 </div>
 
-                <div
-                    className="mx-auto grid max-w-5xl gap-12 md:grid-cols-3"
-                    style={{ marginTop: "30px" }}
-                >
+                <div className="mx-auto mt-[30px] grid max-w-5xl gap-10 md:grid-cols-3 md:gap-12">
                     <div className="text-center">
                         <div className="text-[10px] uppercase tracking-[0.24em] text-white/38">
                             {copy.finalSection.project.title}
@@ -2332,7 +2348,7 @@ export default function EarthClient() {
                         </p>
                     </div>
 
-                    <div className="text-center" style={{ marginTop: "18px" }}>
+                    <div className="text-center md:mt-[18px]">
                         <div className="text-[10px] uppercase tracking-[0.24em] text-white/38">
                             {copy.finalSection.support.title}
                         </div>
@@ -2342,15 +2358,15 @@ export default function EarthClient() {
                         </p>
                     </div>
 
-                    <div className="text-center" style={{ marginTop: "18px" }}>
+                    <div className="text-center md:mt-[18px]">
                         <div className="text-[10px] uppercase tracking-[0.24em] text-white/38">
                             {copy.finalSection.credits.title}
                         </div>
 
                         <p className="mt-5 text-sm leading-8 text-white/58">
-                <span className="font-medium text-white">
-                    {copy.finalSection.credits.bodyTop}
-                </span>
+                        <span className="font-medium text-white">
+                            {copy.finalSection.credits.bodyTop}
+                        </span>
                         </p>
 
                         <p className="mt-3 text-sm leading-8 text-white/58">
@@ -2359,15 +2375,9 @@ export default function EarthClient() {
                     </div>
                 </div>
 
-                <div
-                    className="mx-auto h-px max-w-5xl bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                    style={{ marginTop: "-30px" }}
-                />
+                <div className="mx-auto mt-[-10px] h-px max-w-5xl bg-gradient-to-r from-transparent via-white/10 to-transparent md:mt-[-30px]" />
 
-                <div
-                    className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-3"
-                    style={{ marginTop: "54px" }}
-                >
+                <div className="mx-auto mt-[40px] flex max-w-5xl flex-wrap items-center justify-center gap-3 md:mt-[54px]">
                     <a
                         href="https://x.com/NexoraLab01"
                         target="_blank"
@@ -2402,10 +2412,7 @@ export default function EarthClient() {
                     </a>
                 </div>
 
-                <div
-                    className="mx-auto max-w-5xl text-center text-xs uppercase tracking-[0.22em] text-white/30"
-                    style={{ marginTop: "40px" }}
-                >
+                <div className="mx-auto mt-[40px] max-w-5xl text-center text-xs uppercase tracking-[0.22em] text-white/30">
                     {copy.finalSection.copyright}
                 </div>
             </section>
