@@ -1,16 +1,19 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
-
-if (!stripeSecretKey) {
-    throw new Error("Missing STRIPE_SECRET_KEY");
-}
-
-const stripe = new Stripe(stripeSecretKey);
-
 export async function GET(req: NextRequest) {
     try {
+        const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+
+        if (!stripeSecretKey) {
+            return NextResponse.json(
+                { ok: false, error: "Missing STRIPE_SECRET_KEY" },
+                { status: 500 }
+            );
+        }
+
+        const stripe = new Stripe(stripeSecretKey);
+
         const { searchParams } = new URL(req.url);
 
         const sessionId = searchParams.get("session_id");
