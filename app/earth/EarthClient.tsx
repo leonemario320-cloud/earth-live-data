@@ -1266,6 +1266,40 @@ export default function EarthClient() {
         };
     }, []);
 
+    useEffect(() => {
+        const raw = window.localStorage.getItem("earth-last-unlock");
+        if (!raw) return;
+
+        try {
+            const parsed = JSON.parse(raw);
+
+            if (parsed?.type === "earth") {
+                showToast(
+                    lang === "it" ? "Earth Insights sbloccato ✨" : "Earth Insights unlocked ✨",
+                    lang === "it"
+                        ? "Le analisi premium della Terra sono ora attive."
+                        : "Premium Earth insights are now active.",
+                    "earth"
+                );
+            }
+
+            if (parsed?.type === "donation") {
+                const amount = Number(parsed?.amount ?? 0);
+
+                showToast(
+                    lang === "it" ? "Grazie per il supporto 💛" : "Thank you for the support 💛",
+                    lang === "it"
+                        ? "Planet Guardian è ora attivo sulla tua esperienza."
+                        : "Planet Guardian is now active on your experience.",
+                    "donation",
+                    amount > 0 ? `${amount}€` : undefined
+                );
+            }
+        } catch {}
+
+        window.localStorage.removeItem("earth-last-unlock");
+    }, [lang]);
+
     const isDonator = userAccess.donator || userAccess.donationAmount > 0;
     const hasEarthInsights = userAccess.earthInsights;
 
@@ -1307,6 +1341,18 @@ export default function EarthClient() {
         }
 
         if (tier === "earth") {
+            if (hasEarthInsights) {
+                showToast(
+                    lang === "it" ? "Già sbloccato ✨" : "Already unlocked ✨",
+                    lang === "it"
+                        ? "Earth Insights è già attivo sul tuo profilo."
+                        : "Earth Insights is already active on your profile.",
+                    "earth"
+                );
+                setActiveModal(null);
+                return;
+            }
+
             window.open(EARTH_INSIGHTS_URL, "_blank", "noopener,noreferrer");
             setActiveModal(null);
         }

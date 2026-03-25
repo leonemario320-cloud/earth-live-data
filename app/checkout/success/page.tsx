@@ -76,6 +76,24 @@ function CheckoutSuccessInner() {
                     ),
                 };
 
+                const unlockType =
+                    grant === "earthInsights"
+                        ? "earth"
+                        : grant === "donation"
+                            ? "donation"
+                            : null;
+
+                if (unlockType) {
+                    window.localStorage.setItem(
+                        "earth-last-unlock",
+                        JSON.stringify({
+                            type: unlockType,
+                            amount: amount ? Number(amount) : 0,
+                            ts: Date.now(),
+                        })
+                    );
+                }
+
                 window.localStorage.setItem("earth-access", JSON.stringify(nextState));
 
                 setStatus("success");
