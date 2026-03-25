@@ -1,5 +1,6 @@
 "use client";
 
+import UniversalSceneStage from "../components/UniversalSceneStage";
 import OrbitalSatelliteMini from "../components/OrbitalSatelliteMini";
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -2083,49 +2084,52 @@ export default function EarthClient() {
                             </div>
                         </div>
                     </div>
-
                     <div className="order-1 xl:order-2">
-                        <div className="relative h-[66vh] min-h-[520px] w-full md:h-[82vh] xl:h-[92vh]">
-                            <div className="absolute inset-0 rounded-[40px] bg-[#02040a]" />
-                            <div className="absolute inset-0 rounded-full bg-cyan-400/5 blur-3xl" />
-                            <div className="absolute inset-[-10%] rounded-full bg-violet-500/5 blur-[120px]" />
+                        <UniversalSceneStage className="h-[42vh] min-h-[320px] w-full rounded-[40px] sm:h-[50vh] md:h-[66vh] xl:h-[92vh]">
+                            {(stage) => (
+                                <div className="relative h-full w-full overflow-hidden rounded-[40px]">
+                                    <div className="absolute inset-0 rounded-[40px] bg-[#02040a]" />
+                                    <div className="absolute inset-0 rounded-full bg-cyan-400/5 blur-3xl" />
+                                    <div className="absolute inset-[-10%] rounded-full bg-violet-500/5 blur-[120px]" />
 
-                            {unlocks.donator.particles && (
-                                <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                                    {Array.from({ length: 18 }).map((_, i) => (
-                                        <div
-                                            key={i}
-                                            className="absolute h-1.5 w-1.5 rounded-full bg-yellow-300"
-                                            style={{
-                                                left: `${(i * 17) % 100}%`,
-                                                top: `${(i * 11) % 100}%`,
-                                                opacity: 0.6,
-                                                boxShadow: "0 0 12px rgba(250,204,21,0.7)",
-                                                animation: `livePulse ${2 + (i % 4)}s ease-in-out infinite`,
-                                            }}
+                                    {unlocks.donator.particles && (
+                                        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+                                            {Array.from({ length: 18 }).map((_, i) => (
+                                                <div
+                                                    key={i}
+                                                    className="absolute h-1.5 w-1.5 rounded-full bg-yellow-300"
+                                                    style={{
+                                                        left: `${(i * 17) % 100}%`,
+                                                        top: `${(i * 11) % 100}%`,
+                                                        opacity: 0.6,
+                                                        boxShadow: "0 0 12px rgba(250,204,21,0.7)",
+                                                        animation: `livePulse ${2 + (i % 4)}s ease-in-out infinite`,
+                                                    }}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <div className="absolute inset-0">
+                                        <EarthScene
+                                            activeLayer={activeLayer}
+                                            isNight={isNight}
+                                            isLowPerf={isLowPerf || stage.isLowPerf}
+                                            hasPlanetGuardian={unlocks.donator.aura}
                                         />
-                                    ))}
+                                    </div>
+
+                                    <div className="absolute left-1/2 bottom-[92px] w-[420px] -translate-x-1/2">
+                                        <OrbitalSatelliteMini
+                                            activeLayer={activeLayer}
+                                            liveValues={satelliteLiveValues}
+                                            liveStats={satelliteLiveStats}
+                                            previousLiveData={satellitePreviousStats}
+                                        />
+                                    </div>
                                 </div>
                             )}
-
-                            <EarthScene
-                                activeLayer={activeLayer}
-                                isNight={isNight}
-                                isLowPerf={isLowPerf}
-                                hasPlanetGuardian={unlocks.donator.aura}
-                            />
-
-                            <div className="mt-12 flex w-full justify-center xl:mt-14">
-                                <div className="w-full max-w-[420px]">
-                                    <OrbitalSatelliteMini
-                                        activeLayer={activeLayer}
-                                        liveValues={satelliteLiveValues}
-                                        liveStats={satelliteLiveStats}
-                                        previousLiveData={satellitePreviousStats}
-                                    />
-                                </div>
-                            </div>
-                        </div>
+                        </UniversalSceneStage>
                     </div>
                 </div>
             </section>
