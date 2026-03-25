@@ -1,5 +1,6 @@
 "use client";
 
+import OrbitalMobileFeed from "../components/OrbitalMobileFeed";
 import { useDeviceTier } from "../hooks/useDeviceTier";
 import OrbitalSatelliteMini from "../components/OrbitalSatelliteMini";
 import React, { Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -2128,28 +2129,31 @@ export default function EarthClient() {
                             <div
                                 className={`absolute inset-x-0 flex justify-center ${
                                     isPhone
-                                        ? "bottom-0"
+                                        ? "bottom-3"
                                         : isTablet
-                                            ? "bottom-2"
+                                            ? "bottom-4"
                                             : "bottom-8 xl:bottom-10"
                                 }`}
                             >
-                                <div
-                                    className={`w-full ${
-                                        isPhone
-                                            ? "max-w-[165px]"
-                                            : isTablet
-                                                ? "max-w-[250px]"
-                                                : "max-w-[420px]"
-                                    }`}
-                                >
-                                    <OrbitalSatelliteMini
-                                        activeLayer={activeLayer}
-                                        liveValues={satelliteLiveValues}
-                                        liveStats={satelliteLiveStats}
-                                        previousLiveData={satellitePreviousStats}
-                                    />
-                                </div>
+                                {!isPhone && !isTablet ? (
+                                    <div className="w-full max-w-[420px]">
+                                        <OrbitalSatelliteMini
+                                            activeLayer={activeLayer}
+                                            liveValues={satelliteLiveValues}
+                                            liveStats={satelliteLiveStats}
+                                            previousLiveData={satellitePreviousStats}
+                                        />
+                                    </div>
+                                ) : (
+                                    <div className={`w-full ${isPhone ? "max-w-[280px]" : "max-w-[320px]"}`}>
+                                        <OrbitalMobileFeed
+                                            activeLayer={activeLayer}
+                                            liveValues={satelliteLiveValues}
+                                            liveStats={satelliteLiveStats}
+                                            previousLiveData={satellitePreviousStats}
+                                        />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
