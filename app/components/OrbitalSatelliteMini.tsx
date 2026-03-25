@@ -375,25 +375,6 @@ export default function OrbitalSatelliteMini({
     return (
         <div className="pointer-events-none relative h-[180px] w-full overflow-visible" aria-hidden="true">
             <div className="absolute inset-0">
-                <div
-                    className="absolute left-1/2 top-1/2 h-[92px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl transition-all duration-700"
-                    style={{ background: theme.soft }}
-                />
-
-                <div
-                    className="absolute left-1/2 top-1/2 h-[74px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-700"
-                    style={{ borderColor: theme.ring }}
-                />
-
-                <div
-                    className="absolute left-1/2 top-1/2 h-[54px] w-[160px] -translate-x-1/2 -translate-y-1/2 rounded-full border transition-all duration-700"
-                    style={{ borderColor: theme.soft }}
-                />
-
-                <div
-                    className="absolute left-1/2 top-1/2 h-[16px] w-[16px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[2px] transition-all duration-700"
-                    style={{ background: theme.main }}
-                />
 
                 <div className="satellite-anchor">
                     <div
