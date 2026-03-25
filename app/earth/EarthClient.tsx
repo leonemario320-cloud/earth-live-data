@@ -2129,7 +2129,7 @@ export default function EarthClient() {
                             <div
                                 className={`absolute inset-x-0 flex justify-center ${
                                     isPhone
-                                        ? "-bottom-10"
+                                        ? "-bottom-12"
                                         : isTablet
                                             ? "-bottom-12"
                                             : "-bottom-14 xl:-bottom-16"
