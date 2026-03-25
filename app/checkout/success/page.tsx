@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type AccessState = {
     supporter: boolean;
@@ -11,7 +11,7 @@ type AccessState = {
     donationAmount: number;
 };
 
-export default function CheckoutSuccessPage() {
+function CheckoutSuccessInner() {
     const searchParams = useSearchParams();
     const router = useRouter();
 
@@ -95,7 +95,7 @@ export default function CheckoutSuccessPage() {
     }, [searchParams, router]);
 
     return (
-        <main className="min-h-screen bg-[#02040a] text-white flex items-center justify-center px-6">
+        <main className="flex min-h-screen items-center justify-center bg-[#02040a] px-6 text-white">
             <div className="w-full max-w-lg rounded-[28px] border border-white/10 bg-black/30 p-8 text-center backdrop-blur-2xl">
                 <div className="text-xs uppercase tracking-[0.24em] text-white/45">
                     Earth Live Data
@@ -107,9 +107,7 @@ export default function CheckoutSuccessPage() {
                     {status === "error" && "Payment check failed"}
                 </h1>
 
-                <p className="mt-4 text-sm leading-7 text-white/65">
-                    {message}
-                </p>
+                <p className="mt-4 text-sm leading-7 text-white/65">{message}</p>
 
                 {status !== "loading" && (
                     <button
@@ -121,5 +119,27 @@ export default function CheckoutSuccessPage() {
                 )}
             </div>
         </main>
+    );
+}
+
+export default function CheckoutSuccessPage() {
+    return (
+        <Suspense
+            fallback={
+                <main className="flex min-h-screen items-center justify-center bg-[#02040a] px-6 text-white">
+                    <div className="w-full max-w-lg rounded-[28px] border border-white/10 bg-black/30 p-8 text-center backdrop-blur-2xl">
+                        <div className="text-xs uppercase tracking-[0.24em] text-white/45">
+                            Earth Live Data
+                        </div>
+                        <h1 className="mt-4 text-3xl font-semibold">Checking payment...</h1>
+                        <p className="mt-4 text-sm leading-7 text-white/65">
+                            Please wait a moment.
+                        </p>
+                    </div>
+                </main>
+            }
+        >
+            <CheckoutSuccessInner />
+        </Suspense>
     );
 }
