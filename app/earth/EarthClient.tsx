@@ -2172,7 +2172,7 @@ export default function EarthClient() {
                                         ? "-bottom-12"
                                         : isTablet
                                             ? (isLandscape ? "-bottom-4" : "-bottom-8")
-                                            : "-bottom-10 xl:-bottom-12"
+                                            : "top-[78%] xl:top-[80%]"
                                 }`}
                             >
                                 {showDesktopSatellite ? (
