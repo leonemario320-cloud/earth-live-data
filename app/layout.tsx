@@ -3,13 +3,31 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+    variable: "--font-geist-sans",
+    subsets: ["latin"],
 });
 
-export const metadata = {
-    title: "Earth Live Data",
-    description: "Watch The Global Statistic",
+const geistMono = Geist_Mono({
+    variable: "--font-geist-mono",
+    subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+    title: "Earth Live Data – Real Time Global Statistics Dashboard",
+    description:
+        "Explore earth live data in real time. Watch global statistics including population, births, deaths, earthquakes and flights updated live.",
+    keywords: [
+        "earth live data",
+        "real time world statistics",
+        "live population counter",
+        "global stats live",
+        "earth dashboard",
+        "live world data",
+        "real time earth data",
+        "world data live",
+        "global live statistics",
+        "earth statistics live"
+    ],
     icons: {
         icon: "/favicon.png",
         shortcut: "/favicon.png",
@@ -17,23 +35,16 @@ export const metadata = {
     },
 };
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    return (
+        <html lang="en">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-      </body>
-    </html>
-  );
+        </body>
+        </html>
+    );
 }

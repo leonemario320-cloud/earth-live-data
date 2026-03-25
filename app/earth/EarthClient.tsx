@@ -1783,6 +1783,15 @@ export default function EarthClient() {
 
     return (
         <main className="relative min-h-screen overflow-hidden bg-[#02040a] text-white">
+            <h1 className="sr-only">
+                Earth Live Data in Real Time
+            </h1>
+
+            <p className="sr-only">
+                Earth live data dashboard showing real time global statistics including
+                population, births, deaths, earthquakes and flights.
+            </p>
+
             <CenterToastModal
                 appToast={appToast}
                 onClose={() => setAppToast(null)}
