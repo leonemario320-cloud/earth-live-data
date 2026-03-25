@@ -1921,7 +1921,7 @@ export default function EarthClient() {
                                         </p>
                                     </div>
 
-                                    <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+                                    <div className="flex flex-col gap-4">
                                         <div
                                             className="relative overflow-hidden rounded-[28px] border bg-black/25 p-5 backdrop-blur-2xl"
                                             style={{
@@ -1933,30 +1933,29 @@ export default function EarthClient() {
                                             }}
                                         >
                                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
-                                            <div className="relative flex min-h-[180px] flex-col justify-between">
-                                                <div>
+                                            <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                                                <div className="min-w-0 flex-1">
                                                     <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
                                                         {worldMood.label}
                                                     </div>
-                                                    <p className="mt-3 max-w-[34ch] text-sm leading-6 text-white/58">
+                                                    <p className="mt-3 max-w-[62ch] text-sm leading-6 text-white/58">
                                                         {worldMood.description}
                                                     </p>
                                                 </div>
 
-                                                <div className="mt-6 flex items-end justify-between gap-3">
-                                                    <div className="min-w-0">
-                                                        <div className="break-words text-2xl font-semibold leading-tight text-white md:text-[30px]">
-                                                            {worldMood.value}
-                                                        </div>
-                                                    </div>
-
+                                                <div className="flex items-center gap-3 md:shrink-0">
                                                     <div
-                                                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                                                        className="h-2.5 w-2.5 rounded-full"
                                                         style={{
                                                             background: worldMood.border,
                                                             boxShadow: `0 0 16px ${worldMood.border}`,
                                                         }}
                                                     />
+                                                    <div className="text-left md:text-right">
+                                                        <div className="text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                            {worldMood.value}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1972,30 +1971,29 @@ export default function EarthClient() {
                                             }}
                                         >
                                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
-                                            <div className="relative flex min-h-[180px] flex-col justify-between">
-                                                <div>
+                                            <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                                                <div className="min-w-0 flex-1">
                                                     <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
                                                         {activePressure.label}
                                                     </div>
-                                                    <p className="mt-3 max-w-[34ch] text-sm leading-6 text-white/58">
+                                                    <p className="mt-3 max-w-[62ch] text-sm leading-6 text-white/58">
                                                         {activePressure.description}
                                                     </p>
                                                 </div>
 
-                                                <div className="mt-6 flex items-end justify-between gap-3">
-                                                    <div className="min-w-0">
-                                                        <div className="break-words text-2xl font-semibold leading-tight text-white md:text-[30px]">
-                                                            {activePressure.value}
-                                                        </div>
-                                                    </div>
-
+                                                <div className="flex items-center gap-3 md:shrink-0">
                                                     <div
-                                                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                                                        className="h-2.5 w-2.5 rounded-full"
                                                         style={{
                                                             background: activePressure.border,
                                                             boxShadow: `0 0 16px ${activePressure.border}`,
                                                         }}
                                                     />
+                                                    <div className="text-left md:text-right">
+                                                        <div className="text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                            {activePressure.value}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -2011,30 +2009,29 @@ export default function EarthClient() {
                                             }}
                                         >
                                             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_40%)]" />
-                                            <div className="relative flex min-h-[180px] flex-col justify-between">
-                                                <div>
+                                            <div className="relative flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+                                                <div className="min-w-0 flex-1">
                                                     <div className="text-[11px] uppercase tracking-[0.24em] text-white/42">
                                                         {dominantSignal.label}
                                                     </div>
-                                                    <p className="mt-3 max-w-[34ch] text-sm leading-6 text-white/58">
+                                                    <p className="mt-3 max-w-[62ch] text-sm leading-6 text-white/58">
                                                         {dominantSignal.description}
                                                     </p>
                                                 </div>
 
-                                                <div className="mt-6 flex items-end justify-between gap-3">
-                                                    <div className="min-w-0">
-                                                        <div className="break-words text-2xl font-semibold leading-tight text-white md:text-[30px]">
-                                                            {dominantSignal.value}
-                                                        </div>
-                                                    </div>
-
+                                                <div className="flex items-center gap-3 md:shrink-0">
                                                     <div
-                                                        className="h-2.5 w-2.5 shrink-0 rounded-full"
+                                                        className="h-2.5 w-2.5 rounded-full"
                                                         style={{
                                                             background: dominantSignal.border,
                                                             boxShadow: `0 0 16px ${dominantSignal.border}`,
                                                         }}
                                                     />
+                                                    <div className="text-left md:text-right">
+                                                        <div className="text-2xl font-semibold leading-tight text-white md:text-[30px]">
+                                                            {dominantSignal.value}
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
