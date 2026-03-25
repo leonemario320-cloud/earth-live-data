@@ -2169,7 +2169,7 @@ export default function EarthClient() {
                             <div
                                 className={`absolute inset-x-0 z-20 flex justify-center ${
                                     isPhone
-                                        ? "-bottom-6"
+                                        ? "-bottom-9"
                                         : isTablet
                                             ? (isLandscape ? "-bottom-4" : "-bottom-8")
                                             : "-bottom-10 xl:-bottom-12"
@@ -2188,7 +2188,7 @@ export default function EarthClient() {
                                     <div
                                         className={`w-full ${
                                             isPhone
-                                                ? "max-w-[280px]"
+                                                ? "max-w-[240px] scale-[0.88]"
                                                 : isTablet
                                                     ? (isLandscape ? "max-w-[340px]" : "max-w-[320px]")
                                                     : "max-w-[320px]"
